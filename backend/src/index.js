@@ -8,7 +8,6 @@ const app = express();
 const server = createServer(app);
 
 app.use(express.json());
-app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {

@@ -10,15 +10,14 @@ const userSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
-      unique: true,
       minLength: 3,
-      validate: {
-        validator: function (emailValue) {
-          return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(emailValue);
-        },
-        message: 'Invalid email format'
-      }
+      required: [true, 'Email is required'],
+      unique: [true, 'Email already exists'],
+      match: [
+        // eslint-disable-next-line no-useless-escape
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        'Please fill a valid email address'
+      ]
     },
     role: {
       type: String,

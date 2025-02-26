@@ -1,5 +1,3 @@
-import { response } from 'express';
-
 export default function crudRepository(model) {
   return {
     create: async (data) => {

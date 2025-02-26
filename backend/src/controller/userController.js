@@ -6,7 +6,7 @@ export const signUpController = async (req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: 'Usre created successfully',
+      message: 'User created successfully',
       data: user
     });
   } catch (error) {
