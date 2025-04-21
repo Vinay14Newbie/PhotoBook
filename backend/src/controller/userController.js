@@ -1,4 +1,8 @@
-import { signinService, signUpService } from '../services/userService.js';
+import {
+  getAllUsersService,
+  signinService,
+  signUpService
+} from '../services/userService.js';
 
 export const signUpController = async (req, res) => {
   try {
@@ -43,5 +47,19 @@ export const signinController = async (req, res) => {
       success: false,
       message: 'Failed to signin user'
     });
+  }
+};
+
+export const getAllUsersController = async (req, res) => {
+  try {
+    const users = await getAllUsersService();
+
+    return res.status(200).json({
+      success: true,
+      message: 'Fetched all users',
+      data: users
+    });
+  } catch (error) {
+    throw error;
   }
 };
