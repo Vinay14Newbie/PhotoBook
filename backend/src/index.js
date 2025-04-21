@@ -3,8 +3,10 @@ import { PORT } from './config/serverConfig.js';
 import { createServer } from 'http';
 import connectDB from './config/dbConfig.js';
 import apiRouter from './routers/apiRouter.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
+app.use(cookieParser());
 const server = createServer(app);
 
 app.use(express.json());

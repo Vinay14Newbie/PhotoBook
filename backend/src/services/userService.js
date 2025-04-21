@@ -2,6 +2,21 @@ import userRepository from '../repositories/userRespository.js';
 import bcrypt from 'bcrypt';
 import { generateJwtToken } from '../utils/jwt.js';
 
+export const checkIfUserExistService = async (email) => {
+  try {
+    const user = await userRepository.getByMail(email);
+    if (!user) {
+      throw {
+        status: 404, // 404- not found
+        message: 'User not found'
+      };
+    }
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const signUpService = async (data) => {
   try {
     const user = await userRepository.create(data);

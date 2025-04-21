@@ -31,6 +31,13 @@ export const signUpController = async (req, res) => {
 export const signinController = async (req, res) => {
   try {
     const token = await signinService(req.body);
+
+    //It'll set a cookie named "access_token" in the user’s browser with the value token.
+    res.cookie('access_token', token, {
+      httpOnly: true,
+      secure: false,
+      maxAge: 3600000 // Cookie expires in 1 hour
+    });
     return res.status(200).json({
       success: true,
       message: 'User signed in successfully',
