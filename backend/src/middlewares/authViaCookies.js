@@ -1,7 +1,7 @@
 import { checkIfUserExistService } from '../services/userService.js';
 import { verifyJwtToken } from '../utils/jwt.js';
 
-export const authorizationViaCookies = async (req, res, next) => {
+export const isAuthenticated = async (req, res, next) => {
   const token = req.cookies.access_token;
   if (!token) {
     return res.status(400).json({
