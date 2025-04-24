@@ -13,3 +13,21 @@ export async function createPostService(data) {
     return error;
   }
 }
+
+export async function deletePostService(id, user) {
+  try {
+    const post = await postRepository.findById(id);
+
+    if (post.user.toString() != user) {
+      throw {
+        status: 401,
+        message: 'Unauthorized'
+      };
+    }
+
+    const response = await postRepository.delete(id);
+    return response;
+  } catch (error) {
+    return error;
+  }
+}
